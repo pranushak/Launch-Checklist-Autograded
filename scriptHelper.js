@@ -7,7 +7,7 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
     console.log("information");
     const planets = document.getElementById("missionTarget")
     console.log(planets);
-    planets.innerHTML += `
+    planets.innerHTML = `
                 <h2>Mission Destination</h2>
                 <ol>
                     <li>Name: ${name} </li>
@@ -41,10 +41,9 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
     let fuelId = document.getElementById("fuelStatus");
     let cargoId = document.getElementById("cargoStatus");
     let h2Id = document.getElementById("launchStatus");
-    let faultForm = document.getElementById("faultyItems");
     let pilotId = document.getElementById("pilotStatus");
     let copilotId = document.getElementById("copilotStatus");
-    faultForm.style.visibility = 'hidden';
+    list.style.visibility = 'hidden';
     if(pilotValue === "Is a Number"
         || copilotValue === "Is a Number"
         || fuelValue === "Not a Number"
@@ -56,16 +55,17 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
             cargoValue === "Empty"){
         alert("All fields are required!");
     }
+    console.log(fuelLevel)
     if(fuelLevel < 10000){
         fuelId.innerHTML = `Fuel level too low for launch`;
         h2Id.innerHTML = `Shuttle Not Ready for Launch`;
         pilotId.innerHTML = `Pilot ${pilot} is ready for launch`;
         copilotId.innerHTML = `Co-pilot ${copilot} is ready for launch`;
         h2Id.style.color = "red";
-        faultForm.style.visibility = 'visible';
+        list.style.visibility = 'visible';
         valid = false;
-    }else {
-        valid = true;
+    } else {
+        fuelId.innerHTML = `Fuel level high enough for launch`;
     }
     if(cargoLevel > 10000){
         cargoId.innerHTML = `Cargo mass too heavy for launch`;
@@ -73,10 +73,10 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
         pilotId.innerHTML = `Pilot ${pilot} is ready for launch`;
         copilotId.innerHTML = `Co-pilot ${copilot} is ready for launch`;
         h2Id.style.color = "red";
-        faultForm.style.visibility = 'visible';
+        list.style.visibility = 'visible';
         valid = false
-    }else {
-        valid = true;
+    } else {
+        cargoId.innerHTML = `Cargo mass low enough for launch`;
     }
     if(valid) {
         fuelId.innerHTML = `Fuel level high enough for launch`;
@@ -85,7 +85,7 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
         copilotId.innerHTML = `Co-pilot ${copilot} is ready for launch`;
         h2Id.innerHTML = `Shuttle is Ready for Launch`;
         h2Id.style.color = "green";  
-        faultForm.style.visibility = 'visible';  
+        list.style.visibility = 'visible';  
     } 
     return valid;
  }
@@ -101,7 +101,8 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
  }
  
  function pickPlanet(planets) {
-    return Math.floor(Math.random() * planets.length);
+    let planetIndex = Math.floor(Math.random() * planets.length);
+    return planets[planetIndex];
  }
  
  module.exports.addDestinationInfo = addDestinationInfo;
