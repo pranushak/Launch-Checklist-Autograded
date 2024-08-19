@@ -39,11 +39,14 @@ window.addEventListener("load", function() {
                 h2Id.style.color = "red";
                 faultForm.style.visibility = 'visible';
             }
-            if(cargoMass > 10000){
+            else if(cargoMass > 10000){
                 cargoId.innerHTML = `Cargo mass is too much for the shuttle to take off`;
                 h2Id.innerHTML = `Shuttle Not Ready for Launch`;
                 h2Id.style.color = "red";
                 faultForm.style.visibility = 'visible';
+            }else {
+                h2Id.innerHTML = `Shuttle is Ready for Launch`;
+                h2Id.style.color = "green";
             }
         } 
         
