@@ -1,5 +1,7 @@
 // Write your JavaScript code here!
 
+
+
 window.addEventListener("load", function() {
     let listedPlanets;
     // Set listedPlanetsResponse equal to the value returned by calling myFetch()
@@ -8,7 +10,10 @@ window.addEventListener("load", function() {
         listedPlanets = result;
         console.log(listedPlanets);
     }).then(function() {
-
+       let planetIndex =  pickPlanet(listedPlanets);
+       let planet = listedPlanets[planetIndex];
+       console.log(planetIndex);
+        addDestinationInfo(document, planet.name, planet.diameter, planet.star, planet.distance, planet.moons, planet.image);
     })
     console.log(listedPlanets);
     let form = document.getElementById("launchForm");
