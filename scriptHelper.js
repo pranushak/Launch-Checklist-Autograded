@@ -18,21 +18,21 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
                 </ol>
                 <img src=${imageUrl}> 
         `;
-    
- }
- 
- function validateInput(testInput) {
-    
-    if(testInput === "" || testInput === undefined){
+
+}
+
+function validateInput(testInput) {
+
+    if (testInput === "" || testInput === undefined) {
         return "Empty";
-    }else if(isNaN(testInput)){
+    } else if (isNaN(testInput)) {
         return "Not a Number";
-    }else {
+    } else {
         return "Is a Number";
     }
- }
- 
- function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {  
+}
+
+function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
     let valid = true;
     const pilotValue = validateInput(pilot);
     const copilotValue = validateInput(copilot);
@@ -44,19 +44,18 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
     let pilotId = document.getElementById("pilotStatus");
     let copilotId = document.getElementById("copilotStatus");
     list.style.visibility = 'hidden';
-    if(pilotValue === "Is a Number"
+    if (pilotValue === "Is a Number"
         || copilotValue === "Is a Number"
         || fuelValue === "Not a Number"
-        || cargoValue === "Not a Number"){
+        || cargoValue === "Not a Number") {
         alert("Make sure to enter valid information for each field!");
-    }else if(pilotValue === "Empty" ||
-            copilotValue === "Empty" ||
-            fuelValue === "Empty" ||
-            cargoValue === "Empty"){
+    } else if (pilotValue === "Empty" ||
+        copilotValue === "Empty" ||
+        fuelValue === "Empty" ||
+        cargoValue === "Empty") {
         alert("All fields are required!");
     }
-    console.log(fuelLevel)
-    if(fuelLevel < 10000){
+    if (fuelLevel < 10000) {
         fuelId.innerHTML = `Fuel level too low for launch`;
         h2Id.innerHTML = `Shuttle Not Ready for Launch`;
         pilotId.innerHTML = `Pilot ${pilot} is ready for launch`;
@@ -67,7 +66,7 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
     } else {
         fuelId.innerHTML = `Fuel level high enough for launch`;
     }
-    if(cargoLevel > 10000){
+    if (cargoLevel > 10000) {
         cargoId.innerHTML = `Cargo mass too heavy for launch`;
         h2Id.innerHTML = `Shuttle Not Ready for Launch`;
         pilotId.innerHTML = `Pilot ${pilot} is ready for launch`;
@@ -78,35 +77,35 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
     } else {
         cargoId.innerHTML = `Cargo mass low enough for launch`;
     }
-    if(valid) {
+    if (valid) {
         fuelId.innerHTML = `Fuel level high enough for launch`;
         cargoId.innerHTML = `Cargo mass low enough for launch`;
         pilotId.innerHTML = `Pilot ${pilot} is ready for launch`;
         copilotId.innerHTML = `Co-pilot ${copilot} is ready for launch`;
         h2Id.innerHTML = `Shuttle is Ready for Launch`;
-        h2Id.style.color = "green";  
-        list.style.visibility = 'visible';  
-    } 
+        h2Id.style.color = "green";
+        list.style.visibility = 'visible';
+    }
     return valid;
- }
- 
- async function myFetch() {
-     let planetsReturned;
- 
-     planetsReturned = await fetch("https://handlers.education.launchcode.org/static/planets.json").then( function(response) {
+}
+
+async function myFetch() {
+    let planetsReturned;
+
+    planetsReturned = await fetch("https://handlers.education.launchcode.org/static/planets.json").then(function (response) {
         return response.json();
     });
- 
-     return planetsReturned;
- }
- 
- function pickPlanet(planets) {
+
+    return planetsReturned;
+}
+
+function pickPlanet(planets) {
     let planetIndex = Math.floor(Math.random() * planets.length);
     return planets[planetIndex];
- }
- 
- module.exports.addDestinationInfo = addDestinationInfo;
- module.exports.validateInput = validateInput;
- module.exports.formSubmission = formSubmission;
- module.exports.pickPlanet = pickPlanet; 
- module.exports.myFetch = myFetch;
+}
+
+module.exports.addDestinationInfo = addDestinationInfo;
+module.exports.validateInput = validateInput;
+module.exports.formSubmission = formSubmission;
+module.exports.pickPlanet = pickPlanet;
+module.exports.myFetch = myFetch;
