@@ -50,14 +50,14 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
         || cargoValue === "Not a Number") {
         alert("Make sure to enter valid information for each field!");
         validData = false;
-    } else if(pilotValue === "Empty" ||
+    } else if (pilotValue === "Empty" ||
         copilotValue === "Empty" ||
         fuelValue === "Empty" ||
         cargoValue === "Empty") {
         alert("All fields are required!");
-        validData = false; 
+        validData = false;
     }
-    if(validData) {
+    if (validData) {
         let fuelLevelValid = true;
         let cargoLevelValid = true;
         pilotId.innerHTML = `Pilot ${pilot} is ready for launch`;
@@ -74,7 +74,7 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
         } else {
             cargoId.innerHTML = `Cargo mass low enough for launch`;
         }
-        if(cargoLevelValid && fuelLevelValid) {
+        if (cargoLevelValid && fuelLevelValid) {
             fuelId.innerHTML = `Fuel level high enough for launch`;
             cargoId.innerHTML = `Cargo mass low enough for launch`;
             h2Id.innerHTML = `Shuttle is Ready for Launch`;
@@ -89,12 +89,9 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
 }
 
 async function myFetch() {
-    let planetsReturned;
-
-    planetsReturned = await fetch("https://handlers.education.launchcode.org/static/planets.json").then(function (response) {
+    let planetsReturned = await fetch("https://handlers.education.launchcode.org/static/planets.json").then(function (response) {
         return response.json();
     });
-
     return planetsReturned;
 }
 
